@@ -123,8 +123,11 @@ def webhook():
 def home():
     return "Running"
 
-bot.remove_webhook()
-bot.set_webhook(url=f"{BASE_URL}/{API_TOKEN}")
+@app.route("/setwebhook")
+def set_webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url=f"{BASE_URL}/{API_TOKEN}")
+    return "Webhook set!"
 
 if __name__=="__main__":
     app.run(host="0.0.0.0",port=10000)
