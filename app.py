@@ -117,11 +117,17 @@ def red(key):
 @app.route(f"/{API_TOKEN}", methods=["POST"])
 def webhook():
     print("🔥 UPDATE RECEIVED")
+
     try:
-        upd = telebot.types.Update.de_json(request.json)
+        json_str = request.get_data().decode("utf-8")
+        print("RAW:", json_str)
+
+        upd = telebot.types.Update.de_json(json_str)
         bot.process_new_updates([upd])
+
     except Exception as e:
         print("ERROR:", e)
+
     return "OK", 200
 
 @app.route("/")
