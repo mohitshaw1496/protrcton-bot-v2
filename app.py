@@ -10,7 +10,7 @@ FORCE_CHANNEL = "@Z_Vertex_01"
 ADMIN_ID = 7947256130
 BASE_URL = "https://protrcton-bot-v2.onrender.com"
 
-bot = telebot.TeleBot(API_TOKEN)
+bot = telebot.TeleBot(API_TOKEN, threaded=False)
 app = Flask(__name__)
 
 conn = sqlite3.connect("bot.db", check_same_thread=False)
