@@ -128,3 +128,7 @@ bot.set_webhook(url=f"{BASE_URL}/{API_TOKEN}")
 
 if __name__=="__main__":
     app.run(host="0.0.0.0",port=10000)
+
+@bot.message_handler(func=lambda m: True)
+def test(msg):
+    bot.reply_to(msg, "Bot is alive")
