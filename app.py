@@ -7,7 +7,7 @@ import sqlite3, hashlib, time
 API_TOKEN = "8498039053:AAFF0bLEb08q10IX8A90F5DZQ_PH7kQNfdo"
 BOT_USERNAME = "Vertex_Protrctor_Robot"
 FORCE_CHANNEL = "@Z_Vertex_01"
-ADMIN_ID = 7947256130
+ADMIN_ID = "7947256130"
 BASE_URL = "https://protrcton-bot-v2.onrender.com"
 
 bot = telebot.TeleBot(API_TOKEN)
