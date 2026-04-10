@@ -38,6 +38,7 @@ def save_user(uid):
 def start(msg):
     save_user(msg.from_user.id)
     args = msg.text.split()
+    print("START COMMAND RECEIVED")
 
     if len(args)>1:
         key = args[1]
@@ -133,14 +134,11 @@ def set_webhook():
     bot.set_webhook(url=f"{BASE_URL}/{API_TOKEN}")
     return "Webhook set!"
 
-@bot.message_handler(func=lambda m: True)
+@bot.message_handler(func=lambda m: True, content_types=['text'])
 def test(msg):
     print("MSG:", msg.text)
-    bot.reply_to(msg, "Bot is alive")
+    if not msg.text.startswith("/"):
+        bot.reply_to(msg, "Bot is alive")
 
 if __name__=="__main__":
     app.run(host="0.0.0.0",port=10000)
-
-@bot.message_handler(func=lambda m: True)
-def test(msg):
-    bot.reply_to(msg, "Bot is alive")
