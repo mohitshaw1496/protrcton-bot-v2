@@ -33,6 +33,8 @@ def is_joined(user_id):
 def save_user(uid):
     cursor.execute("INSERT OR IGNORE INTO users VALUES (?)",(uid,))
     conn.commit()
+    
+bot.remove_webhook()
 
 @bot.message_handler(commands=['start'])
 def start(msg):
