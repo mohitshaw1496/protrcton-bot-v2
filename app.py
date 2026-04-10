@@ -5,9 +5,9 @@ from flask import Flask, request, render_template, redirect
 import sqlite3, hashlib, time
 
 API_TOKEN = "YOUR_BOT_TOKEN"
-BOT_USERNAME = "YOUR_BOT_USERNAME"
-FORCE_CHANNEL = "@abc"
-ADMIN_ID = 123456789
+BOT_USERNAME = "Vertex_protrctor_Robot"
+FORCE_CHANNEL = "@Z_Vertex_01"
+ADMIN_ID = 7947256130
 BASE_URL = "https://your-app.onrender.com"
 
 bot = telebot.TeleBot(API_TOKEN)
