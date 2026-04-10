@@ -7,7 +7,7 @@ import sqlite3, hashlib, time
 API_TOKEN = "8498039053:AAFF0bLEb08q10IX8A90F5DZQ_PH7kQNfdo"
 BOT_USERNAME = "Vertex_Protrctor_Robot"
 FORCE_CHANNEL = "@Z_Vertex_01"
-ADMIN_ID = "7947256130"
+ADMIN_ID = 7947256130
 BASE_URL = "https://protrcton-bot-v2.onrender.com"
 
 bot = telebot.TeleBot(API_TOKEN)
@@ -113,11 +113,15 @@ def red(key):
     if not d: return "Invalid"
     return redirect(d[0])
 
-@app.route(f"/{API_TOKEN}",methods=["POST"])
+@app.route(f"/{API_TOKEN}", methods=["POST"])
 def webhook():
-    upd=telebot.types.Update.de_json(request.get_data().decode())
-    bot.process_new_updates([upd])
-    return "OK"
+    print("🔥 UPDATE RECEIVED")
+    try:
+        upd = telebot.types.Update.de_json(request.json)
+        bot.process_new_updates([upd])
+    except Exception as e:
+        print("ERROR:", e)
+    return "OK", 200
 
 @app.route("/")
 def home():
@@ -128,6 +132,11 @@ def set_webhook():
     bot.remove_webhook()
     bot.set_webhook(url=f"{BASE_URL}/{API_TOKEN}")
     return "Webhook set!"
+
+@bot.message_handler(func=lambda m: True)
+def test(msg):
+    print("MSG:", msg.text)
+    bot.reply_to(msg, "Bot is alive")
 
 if __name__=="__main__":
     app.run(host="0.0.0.0",port=10000)
