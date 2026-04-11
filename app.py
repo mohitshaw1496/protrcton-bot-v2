@@ -9,6 +9,7 @@ BOT_USERNAME = "Vertex_Protrctor_Robot"
 FORCE_CHANNEL = "@Z_Vertex_01"
 ADMIN_ID = 7947256130
 BASE_URL = "https://protrcton-bot-v2.onrender.com"
+CREDIT = environ.get("CREDIT", "[Ꮓ 𝐕𝐞𝐫𝐭𝐞𝐱](https://t.me/Z_Vertex_01)")
 
 bot = telebot.TeleBot(API_TOKEN, threaded=False)
 app = Flask(__name__)
@@ -36,11 +37,26 @@ def save_user(uid):
     
 bot.remove_webhook()
 
-@bot.message_handler(commands=['start'])
+@bot.message_message(filter.commands=['start'])
 def start(msg):
     save_user(msg.from_user.id)
     args = msg.text.split()
     print("START COMMAND RECEIVED")
+     if m.chat.id in ADMIN_ID:
+        caption = (
+            f"𝐇𝐞𝐥𝐥𝐨 𝐃𝐞𝐚𝐫 **{m.from_user.first_name}** 👋!\n\n"
+            f"➠ 𝐈 𝐚𝐦 𝐚 𝐏𝐫𝐨𝐭𝐞𝐜𝐭𝐢𝐨𝐧 𝐁𝐨𝐭𝐭\n\n"
+            f"➠ Can Extract Videos & PDFs From Your Text File and Upload to Telegram!\n\n"
+            f"➠ 𝐌𝐚𝐝𝐞 𝐁𝐲 : {CREDIT} 🦁"
+        )
+    else:
+        caption = (
+            f"🎉 Welcome {m.from_user.first_name} to Protection Bot! 🎉\n\n"
+            f"**You are currently using the free version.** 🆓\n\n"
+            f"I'm here to make your life easier by downloading videos from your **.txt** file 📄 and uploading them directly to Telegram!\n\n"
+            f"**Want to get started? Press /id**\n\n"
+            f"💬 Contact: [{CREDIT}](tg://openmessage?user_id={ADMIN_ID}) to Get The Subscription 🎫 and unlock the full potential of your new bot! 🔓\n"
+        )
 
     if len(args)>1:
         key = args[1]
